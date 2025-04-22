@@ -22,3 +22,5 @@ if __name__ == '__main__':
     df = pd.read_excel("PASSO_REAL.xlsx")
 
     df = modify_dataframe(df)
+
+    print(df)
