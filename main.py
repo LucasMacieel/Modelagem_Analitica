@@ -6,8 +6,8 @@ def modify_dataframe(dataframe):
         'SET': '09', 'OUT': '10', 'NOV': '11', 'DEZ': '12'
     }
     dataframe['MONTH'] = dataframe['MONTH'].map(month_map)
-    dataframe['YEAR'] = dataframe['ANO'].astype(str) + '-' + dataframe['MONTH']
-    dataframe = dataframe[['YEAR', 'VALUE']].sort_values(by='YEAR').reset_index(drop=True)
+    dataframe['DATE'] = dataframe['ANO'].astype(str) + '-' + dataframe['MONTH']
+    dataframe = dataframe[['DATE', 'VALUE']].sort_values(by='DATE').reset_index(drop=True)
 
     return dataframe
 
@@ -18,7 +18,6 @@ if __name__ == '__main__':
     from statsmodels.tsa.stattools import adfuller
     from statsmodels.tsa.seasonal import seasonal_decompose
 
-    # Melt the dataframe to long format with 'DATE' and 'VALUE' columns
     df = pd.read_excel("PASSO_REAL.xlsx")
 
     df = modify_dataframe(df)
