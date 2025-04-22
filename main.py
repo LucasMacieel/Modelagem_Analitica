@@ -1,13 +1,13 @@
 def modify_dataframe(dataframe):
-    dataframe = dataframe.melt(id_vars='ANO', var_name='MES', value_name='VALOR')
+    dataframe = dataframe.melt(id_vars='ANO', var_name='MONTH', value_name='VALUE')
     month_map = {
         'JAN': '01', 'FEV': '02', 'MAR': '03', 'ABR': '04',
         'MAI': '05', 'JUN': '06', 'JUL': '07', 'AGO': '08',
         'SET': '09', 'OUT': '10', 'NOV': '11', 'DEZ': '12'
     }
-    dataframe['MES'] = dataframe['MES'].map(month_map)
-    dataframe['ANO'] = dataframe['ANO'].astype(str) + '-' + dataframe['MES']
-    dataframe = dataframe[['ANO', 'VALOR']].sort_values(by='ANO').reset_index(drop=True)
+    dataframe['MONTH'] = dataframe['MONTH'].map(month_map)
+    dataframe['YEAR'] = dataframe['ANO'].astype(str) + '-' + dataframe['MONTH']
+    dataframe = dataframe[['YEAR', 'VALUE']].sort_values(by='YEAR').reset_index(drop=True)
 
     return dataframe
 
